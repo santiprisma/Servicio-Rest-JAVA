@@ -73,8 +73,8 @@ public class EjemploResource {
     }
     
     @GET
-    @Path("/personas")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Path("/personas")
     public Response recuperarPersonas() {
         List<Persona> personas = new ArrayList<Persona>();
         personas.add(new Persona(1, "Juan", "Perez"));
@@ -84,4 +84,13 @@ public class EjemploResource {
         GenericEntity ge = new GenericEntity<List<Persona>>(personas) {};
         return Response.status(200).entity(ge).build();
     }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/personas")
+    public Response altaPersona(Persona persona) {
+        return Response.status(200).entity(persona).build();
+    }
+    
 }
